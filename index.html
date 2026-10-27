@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1e57bd">
+  <title>Batang Tabina · Citizen App</title>
+  <script>
+    try {
+      document.documentElement.dataset.theme = localStorage.getItem('tabina-citizen-theme') === 'dark' ? 'dark' : 'light'
+    } catch (error) {
+      document.documentElement.dataset.theme = 'light'
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
+  <link rel="stylesheet" href="assets/css/app.css?v=mobile-v6">
+</head>
+<body>
+  <div class="app-shell" id="citizen-app">
+    <header class="app-header">
+      <button type="button" class="app-brand" data-screen="home" aria-label="Go to Home">
+        <img src="assets/img/Bag-ong%20Tabina.png" alt="">
+        <span><strong>Batang Tabina</strong><small>Municipality of Tabina</small></span>
+      </button>
+      <button type="button" class="icon-button" data-toast="You are all caught up in this demo." aria-label="Notifications">
+        <i class="ri-notification-3-line" aria-hidden="true"></i><span class="notification-dot"></span>
+      </button>
+      <button type="button" class="icon-button theme-toggle" id="citizen-theme-toggle" aria-label="Switch to night theme" aria-pressed="false" title="Switch to night theme">
+        <i class="ri-sun-line" aria-hidden="true"></i>
+      </button>
+    </header>
+
+    <main class="app-content" id="app-content">
+      <section class="screen active" data-view="home" aria-labelledby="home-title">
+        <section class="welcome-banner">
+          <div class="welcome-top"><span id="today-label"></span><span><i class="ri-sun-line"></i> Tabina</span></div>
+          <h1 id="home-title">Madayaw, Tabina!</h1>
+          <p>Connecting citizens, services, and opportunities.</p>
+          <label class="global-search"><i class="ri-search-line" aria-hidden="true"></i><span class="sr-only">Search services</span><input type="search" id="global-search" placeholder="What would you like to do today?"></label>
+        </section>
+
+        <section class="section-block">
+          <div class="section-heading"><div><h2>Latest in Tabina</h2><p>News, events, and advisories from the LGU</p></div><button class="text-button" type="button" data-screen="community">See all <i class="ri-arrow-right-s-line"></i></button></div>
+          <button type="button" class="news-card" data-screen="community">
+            <span class="news-art"><img src="assets/img/Bag-ong%20Tabina.png" alt="Bag-ong Tabina"></span>
+            <span class="news-copy"><small>OCT 13, 2026 · NEWS</small><strong>Bag-ong Tabina</strong><span>Stay connected with local updates and advisories from the LGU.</span></span>
+          </button>
+        </section>
+
+        <section class="section-block quick-access">
+          <div class="section-heading"><div><h2>Quick Access</h2><p>Frequently used services</p></div><button class="text-button" type="button" data-screen="services">See all <i class="ri-arrow-right-s-line"></i></button></div>
+          <div class="quick-grid">
+            <button type="button" class="quick-link" data-screen="jobs"><span class="quick-icon green"><i class="ri-briefcase-3-line"></i></span><span>Jobs</span></button>
+            <button type="button" class="quick-link" data-screen="utilities"><span class="quick-icon orange"><i class="ri-flashlight-line"></i></span><span>Utilities</span></button>
+            <button type="button" class="quick-link" data-screen="tourism"><span class="quick-icon teal"><i class="ri-compass-3-line"></i></span><span>Tourism</span></button>
+          </div>
+        </section>
+
+        <button type="button" class="report-shortcut" data-open-report>
+          <span class="shortcut-icon"><i class="ri-megaphone-line"></i></span><span><strong>Report an Issue</strong><small>Help improve Tabina by reporting concerns in your area.</small></span><i class="ri-arrow-right-s-line"></i>
+        </button>
+
+        <section class="section-block">
+          <div class="section-heading"><div><h2>Events</h2><p>Upcoming events</p></div><button class="text-button" type="button" data-screen="community">See all <i class="ri-arrow-right-s-line"></i></button></div>
+          <div class="empty-card"><span class="quick-icon purple"><i class="ri-calendar-event-line"></i></span><span><strong>No upcoming events</strong><small>Check back soon for community activities.</small></span></div>
+        </section>
+
+        <button type="button" class="shop-banner" data-screen="community">
+          <small>COMMUNITY SHOP</small><strong>Shop local, support Tabina</strong><span>Discover products from local makers. Order online, pick up, or get it delivered.</span><b>Browse Shop <i class="ri-arrow-right-line"></i></b><i class="ri-store-2-line shop-watermark"></i>
+        </button>
+      </section>
+
+      <section class="screen" data-view="services" aria-labelledby="services-title" hidden>
+        <header class="page-heading"><span class="eyebrow">MUNICIPALITY OF TABINA</span><h1 id="services-title">Services</h1><p>Everything Tabina can help you with.</p></header>
+        <label class="page-search"><i class="ri-search-line"></i><span class="sr-only">Search services</span><input type="search" id="service-search" placeholder="Search services"></label>
+        <section class="section-block">
+          <div class="section-heading"><div><h2>LGU Services</h2><p>Choose a service to get started</p></div></div>
+          <div class="service-list">
+            <button type="button" class="service-card" data-book="Business Permit Appointment" data-search="business permit appointment"><i class="service-icon blue ri-file-list-3-line"></i><span><strong>Business Permit Appointment</strong><small>Schedule a visit with the business permit office.</small></span><i class="ri-arrow-right-s-line"></i></button>
+            <button type="button" class="service-card" data-open-report data-search="report issue concern"><i class="service-icon red ri-megaphone-line"></i><span><strong>Report an Issue</strong><small>Report and track a concern in your area.</small></span><i class="ri-arrow-right-s-line"></i></button>
+            <button type="button" class="service-card" data-screen="help" data-search="help center support ticket"><i class="service-icon teal ri-customer-service-2-line"></i><span><strong>Help Center</strong><small>Ask the LGU for help with a concern.</small></span><i class="ri-arrow-right-s-line"></i></button>
+          </div>
+        </section>
+        <section class="section-block">
+          <div class="section-heading"><div><h2>Appointments</h2><p>Your recent requests</p></div><span class="counter" id="appointment-count">0</span></div>
+          <div class="appointment-list" id="appointment-list"></div>
+        </section>
+        <section class="section-block service-group">
+          <h2 class="group-title">SAFETY</h2>
+          <div class="service-list">
+            <button type="button" class="service-card" data-screen="hotlines"><i class="service-icon red ri-phone-line"></i><span><strong>Emergency Hotlines</strong><small>Call for help or send an emergency alert.</small></span><i class="ri-arrow-right-s-line"></i></button>
+            <button type="button" class="service-card" data-screen="emergency"><i class="service-icon orange ri-alarm-warning-line"></i><span><strong>Disaster Alerts</strong><small>Active safety advisories from the LGU.</small></span><i class="ri-arrow-right-s-line"></i></button>
+          </div>
+        </section>
+        <section class="section-block service-group">
+          <h2 class="group-title">COMMUNITY</h2>
+          <div class="service-list">
+            <button type="button" class="service-card" data-screen="community"><i class="service-icon blue ri-newspaper-line"></i><span><strong>Latest in Tabina</strong><small>News, events, and advisories from the LGU.</small></span><i class="ri-arrow-right-s-line"></i></button>
+            <button type="button" class="service-card" data-screen="community"><i class="service-icon purple ri-calendar-event-line"></i><span><strong>Events Calendar</strong><small>Upcoming municipal events.</small></span><i class="ri-arrow-right-s-line"></i></button>
+            <button type="button" class="service-card" data-screen="community"><i class="service-icon orange ri-search-eye-line"></i><span><strong>Lost and Found</strong><small>Browse or report a found item.</small></span><i class="ri-arrow-right-s-line"></i></button>
+          </div>
+        </section>
+        <section class="section-block service-group">
+          <h2 class="group-title">JOBS &amp; OPPORTUNITIES</h2>
+          <button type="button" class="service-card" data-screen="jobs"><i class="service-icon green ri-briefcase-3-line"></i><span><strong>Jobs</strong><small>Find local work or post a job.</small></span><i class="ri-arrow-right-s-line"></i></button>
+        </section>
+        <section class="section-block service-group">
+          <h2 class="group-title">UTILITIES</h2>
+          <button type="button" class="service-card" data-screen="utilities"><i class="service-icon orange ri-flashlight-line"></i><span><strong>Utilities</strong><small>Electricity, water, and service information.</small></span><i class="ri-arrow-right-s-line"></i></button>
+        </section>
+        <section class="section-block service-group">
+          <h2 class="group-title">TOURISM &amp; INFORMATION</h2>
+          <div class="service-list">
+            <button type="button" class="service-card" data-screen="tourism"><i class="service-icon teal ri-compass-3-line"></i><span><strong>Explore Tabina</strong><small>Beaches, nature spots, and places to visit.</small></span><i class="ri-arrow-right-s-line"></i></button>
+            <button type="button" class="service-card" data-screen="tourism"><i class="service-icon teal ri-book-open-line"></i><span><strong>Citizen Guide</strong><small>About Tabina: history, officials, and profile.</small></span><i class="ri-arrow-right-s-line"></i></button>
+            <button type="button" class="service-card" data-screen="help"><i class="service-icon blue ri-robot-2-line"></i><span><strong>AI Assistant</strong><small>Ask questions about Tabina services.</small></span><i class="ri-arrow-right-s-line"></i></button>
+          </div>
+        </section>
+      </section>
+
+      <section class="screen" data-view="emergency" aria-labelledby="emergency-title" hidden>
+        <header class="emergency-banner"><button type="button" class="back-button" data-screen="home"><i class="ri-arrow-left-line"></i> Back</button><span class="eyebrow">SOS · NEED HELP?</span><h1 id="emergency-title">Emergency Hotlines</h1><p>Tap a card to call immediately.</p></header>
+        <form class="emergency-form" id="emergency-form">
+          <section class="section-block emergency-form-card">
+            <div class="section-heading"><div><h2>Select Emergency Type</h2><p>Your name, phone, and GPS location are not sent automatically.</p></div></div>
+            <div class="emergency-types">
+              <button type="button" data-emergency-type="Medical / Ambulance"><i class="ri-first-aid-kit-line"></i><span>Medical / Ambulance</span></button>
+              <button type="button" data-emergency-type="Police / Crime"><i class="ri-shield-star-line"></i><span>Police / Crime</span></button>
+              <button type="button" data-emergency-type="Fire"><i class="ri-fire-line"></i><span>Fire</span></button>
+              <button type="button" data-emergency-type="Flood / Disaster"><i class="ri-flood-line"></i><span>Flood / Disaster</span></button>
+              <button type="button" data-emergency-type="Sea / Coast Guard"><i class="ri-ship-line"></i><span>Sea / Coast Guard</span></button>
+              <button type="button" data-emergency-type="Other Emergency"><i class="ri-alarm-warning-line"></i><span>Other Emergency</span></button>
+            </div>
+            <div class="section-heading"><div><h2>What is happening? <small>(optional)</small></h2></div></div>
+            <div class="chips"><button type="button" data-situation="Injured person">Injured person</button><button type="button" data-situation="Trapped">Trapped</button><button type="button" data-situation="Need ambulance">Need ambulance</button><button type="button" data-situation="Armed person">Armed person</button><button type="button" data-situation="Missing person">Missing person</button><button type="button" data-situation="Other">Other</button></div>
+            <button type="submit" class="primary-button emergency-submit"><i class="ri-phone-line"></i> Select Emergency Type</button>
+            <label class="practice-toggle"><span><strong>Practice mode</strong><small>For drills and demos only</small></span><input type="checkbox" id="practice-mode"><i aria-hidden="true"></i></label>
+            <button type="button" class="text-button alerts-button" data-screen="activity">My alerts <i class="ri-arrow-right-s-line"></i></button>
+            <p class="form-note">Prototype only. No emergency call or alert is sent from this app.</p>
+          </section>
+        </form>
+        <section class="section-block hotline-section">
+          <h2>National Hotlines</h2>
+          <div class="national-hotlines">
+            <article class="hotline-national red"><i class="ri-asterisk"></i><strong>911</strong><small>National Emergency</small></article>
+            <article class="hotline-national green"><i class="ri-first-aid-kit-line"></i><strong>1555</strong><small>DOH Hotline</small></article>
+            <article class="hotline-national blue"><i class="ri-water-flash-line"></i><strong>8976-1600</strong><small>NDRRMC</small></article>
+          </div>
+          <div class="section-heading"><div><h2>Local Emergency Contacts</h2><p>Municipality of Tabina · sample entries</p></div></div>
+          <div class="local-hotlines">
+            <article><i class="service-icon red ri-ship-line"></i><span><strong>Coast Guard</strong><small>Philippine Coast Guard</small><b>Sample contact · 0995 000 0000</b></span><button type="button" data-hotline>Call</button></article>
+            <article><i class="service-icon red ri-shield-star-line"></i><span><strong>MPS</strong><small>Municipal Police Station</small><b>Sample contact · 0998 000 0000</b></span><button type="button" data-hotline>Call</button></article>
+            <article><i class="service-icon red ri-alarm-warning-line"></i><span><strong>MDRRMO</strong><small>Municipal Disaster Risk Reduction Office</small><b>Sample contact · 0910 000 0000</b></span><button type="button" data-hotline>Call</button></article>
+            <article><i class="service-icon red ri-heart-pulse-line"></i><span><strong>RHU</strong><small>Rural Health Unit</small><b>Sample contact · 0997 000 0000</b></span><button type="button" data-hotline>Call</button></article>
+            <article><i class="service-icon red ri-fire-line"></i><span><strong>BFP</strong><small>Bureau of Fire Protection</small><b>Sample contact · 0915 000 0000</b></span><button type="button" data-hotline>Call</button></article>
+          </div>
+        </section>
+      </section>
+
+      <section class="screen" data-view="activity" aria-labelledby="activity-title" hidden>
+        <header class="page-heading"><span class="eyebrow">YOUR REQUESTS</span><h1 id="activity-title">Activity</h1><p>Track reports and requests you've submitted.</p></header>
+        <div class="filter-row"><button type="button" class="selected" data-filter="All">All</button><button type="button" data-filter="Reports">Reports</button><button type="button" data-filter="Emergency">Emergency</button><button type="button" data-filter="Services">Services</button></div>
+        <div class="activity-list" id="activity-list"><article class="activity-card" data-kind="Reports"><i class="activity-icon orange ri-file-list-3-line"></i><span><span class="activity-title"><strong>Street light needs repair</strong><b class="status review">Under review</b></span><small>Report · Poblacion</small><small>Submitted Oct 13, 2026 · BT-RPT-0018</small></span></article></div>
+        <div class="empty-state" id="activity-empty" hidden><i class="ri-time-line"></i><strong>No activity in this category yet.</strong><span>New requests will appear here.</span></div>
+      </section>
+
+      <section class="screen" data-view="profile" aria-labelledby="profile-title" hidden>
+        <header class="profile-heading"><h1 id="profile-title">Account</h1></header>
+        <section class="profile-card"><span class="avatar">B</span><div><h2 id="profile-name">BADER ALBIOS MALACO</h2><b class="verified"><i class="ri-checkbox-circle-fill"></i> Verified Citizen</b></div><button type="button" class="edit-profile" id="edit-profile" aria-label="Edit profile"><i class="ri-pencil-line"></i></button><p><i class="ri-phone-line"></i> <span id="profile-phone">+63 945 000 0101</span></p></section>
+        <section class="section-block"><h2 class="group-title">HOME LOCATION</h2><article class="setting-card location-card"><i class="ri-home-4-line"></i><span><strong id="profile-address">Saniblangis</strong><small>Poblacion, Tabina<br>Zamboanga del Sur</small></span><button type="button" data-toast="Location editing is a demo feature.">Edit</button></article></section>
+        <section class="section-block"><h2 class="group-title">PHONE PERMISSIONS</h2><div class="setting-card permission-list"><div><i class="ri-focus-3-line"></i><span><strong>Location</strong><small id="location-state">Enabled</small></span><button type="button" class="permission-toggle enabled" aria-pressed="true" data-permission="Location"><i class="ri-check-line"></i></button></div><div><i class="ri-notification-3-line"></i><span><strong>Notifications</strong><small id="notifications-state">Enabled</small></span><button type="button" class="permission-toggle enabled" aria-pressed="true" data-permission="Notifications"><i class="ri-check-line"></i></button></div></div></section>
+        <section class="section-block"><h2 class="group-title">ACCOUNT SETTINGS</h2><div class="setting-card settings-list"><button type="button" data-toast="Profile editing is a demo feature."><i class="ri-pencil-line"></i><span>Edit Profile</span><i class="ri-arrow-right-s-line"></i></button><button type="button" data-toast="Mobile number changes are not connected in this demo."><i class="ri-smartphone-line"></i><span>Change Mobile Number</span><i class="ri-arrow-right-s-line"></i></button><button type="button" data-screen="help"><i class="ri-question-line"></i><span>Help & Support</span><i class="ri-arrow-right-s-line"></i></button></div></section>
+        <button type="button" class="signout" data-toast="Sign out is not connected in this demo.">Sign out</button>
+      </section>
+
+      <section class="screen" data-view="community" aria-labelledby="community-title" hidden>
+        <header class="page-heading"><span class="eyebrow">COMMUNITY</span><h1 id="community-title">Discover Tabina</h1><p>News, events, services, and opportunities from your community.</p></header>
+        <div class="category-row"><button class="selected" data-category="All">All</button><button data-category="News">News</button><button data-category="Events">Events</button><button data-category="Community">Community</button><button data-category="Opportunities">Jobs</button><button data-category="Tourism">Tourism</button><button data-category="Utilities">Utilities</button></div>
+        <article class="discovery-feature" data-category-item="News"><img src="assets/img/Bag-ong%20Tabina.png" alt="Bag-ong Tabina"><small>NEWS · OCT 13, 2026</small><h2>Latest in Tabina</h2><p>News, events, and advisories from the LGU.</p></article>
+        <button type="button" class="discovery-link" data-category-item="Events" data-toast="No upcoming events are listed in this sample."><i class="discovery-icon purple ri-calendar-event-line"></i><span><strong>Events Calendar</strong><small>Upcoming municipal events</small></span><i class="ri-arrow-right-s-line"></i></button>
+        <button type="button" class="discovery-link" data-category-item="Community" data-toast="No lost-and-found listings are available in this sample."><i class="discovery-icon orange ri-search-eye-line"></i><span><strong>Lost and Found</strong><small>Browse lost items and found property</small></span><i class="ri-arrow-right-s-line"></i></button>
+        <button type="button" class="discovery-link" data-screen="tourism" data-category-item="Tourism"><i class="discovery-icon teal ri-compass-3-line"></i><span><strong>Explore Tabina</strong><small>Beaches, nature spots, and places to visit</small></span><i class="ri-arrow-right-s-line"></i></button>
+        <button type="button" class="discovery-link" data-screen="jobs" data-category-item="Opportunities"><i class="discovery-icon green ri-briefcase-3-line"></i><span><strong>Jobs</strong><small>Find local work or post a job</small></span><i class="ri-arrow-right-s-line"></i></button>
+        <button type="button" class="discovery-link" data-screen="utilities" data-category-item="Utilities"><i class="discovery-icon orange ri-flashlight-line"></i><span><strong>Utilities</strong><small>Electricity and water information</small></span><i class="ri-arrow-right-s-line"></i></button>
+        <article class="shop-banner shop-page" data-category-item="Community"><small>COMMUNITY SHOP</small><strong>Shop local, support Tabina</strong><span>Browse local products. Pick up or arrange delivery.</span><button type="button" data-toast="The community shop is a preview and is not connected to checkout.">Browse Shop</button></article>
+      </section>
+
+      <section class="screen" data-view="jobs" aria-labelledby="jobs-title" hidden>
+        <header class="page-heading"><span class="eyebrow">JOBS & OPPORTUNITIES</span><h1 id="jobs-title">Local Jobs</h1><p>Find opportunities in the Tabina community.</p></header>
+        <label class="page-search"><i class="ri-search-line"></i><span class="sr-only">Search jobs</span><input type="search" id="job-search" placeholder="Search jobs"></label>
+        <article class="job-card" data-job="community health worker"><i class="job-icon green ri-heart-pulse-line"></i><small>SAMPLE LISTING</small><h2>Community Health Worker</h2><p>Municipality of Tabina · Health Services</p><div><span><i class="ri-map-pin-line"></i> Poblacion</span><span><i class="ri-time-line"></i> Full time</span></div><button type="button" data-toast="This sample job listing is not accepting applications yet.">View opportunity <i class="ri-arrow-right-line"></i></button></article>
+        <article class="job-card" data-job="community clean-up coordinator"><i class="job-icon blue ri-leaf-line"></i><small>SAMPLE LISTING</small><h2>Community Clean-up Coordinator</h2><p>Community Programs · Local initiative</p><div><span><i class="ri-map-pin-line"></i> Tabina</span><span><i class="ri-time-line"></i> Part time</span></div><button type="button" data-toast="This sample job listing is not accepting applications yet.">View opportunity <i class="ri-arrow-right-line"></i></button></article>
+      </section>
+
+      <section class="screen" data-view="utilities" aria-labelledby="utilities-title" hidden>
+        <header class="page-heading"><span class="eyebrow">LOCAL INFORMATION</span><h1 id="utilities-title">Utilities</h1><p>Helpful provider information for your area.</p></header>
+        <article class="utility-card"><i class="utility-icon orange ri-flashlight-line"></i><small>ELECTRICITY</small><h2>Electric service information</h2><p>For service concerns and outage updates, contact your local electricity provider.</p><button type="button" data-toast="Provider contacts are not connected in this demo.">View provider details <i class="ri-arrow-right-line"></i></button></article>
+        <article class="utility-card"><i class="utility-icon blue ri-drop-line"></i><small>WATER</small><h2>Water service information</h2><p>Find local water service advisories and provider information.</p><button type="button" data-toast="Provider contacts are not connected in this demo.">View provider details <i class="ri-arrow-right-line"></i></button></article>
+        <p class="demo-note">Sample information only. Utility providers are not connected.</p>
+      </section>
+
+      <section class="screen" data-view="tourism" aria-labelledby="tourism-title" hidden>
+        <header class="page-heading"><span class="eyebrow">TOURISM & INFORMATION</span><h1 id="tourism-title">Explore Tabina</h1><p>Discover local places and community information.</p></header>
+        <article class="tourism-card"><i class="ri-landscape-line"></i><small>NATURE & COAST</small><h2>Explore the coastline</h2><p>Discover Tabina's coastal scenery and local destinations.</p><button type="button" data-toast="Tourism details are sample content.">Explore destination <i class="ri-arrow-right-line"></i></button></article>
+        <button type="button" class="discovery-link" data-screen="community"><i class="discovery-icon teal ri-book-open-line"></i><span><strong>Citizen Guide</strong><small>About Tabina: history, officials, and profile</small></span><i class="ri-arrow-right-s-line"></i></button>
+        <button type="button" class="discovery-link" data-screen="help"><i class="discovery-icon blue ri-robot-2-line"></i><span><strong>AI Assistant</strong><small>Ask questions about Tabina services</small></span><i class="ri-arrow-right-s-line"></i></button>
+      </section>
+
+      <section class="screen" data-view="help" aria-labelledby="help-title" hidden>
+        <header class="page-heading"><span class="eyebrow">WE'RE HERE TO HELP</span><h1 id="help-title">Help Center</h1><p>Send a question or tell us what you need help with.</p></header>
+        <form class="form-card" id="support-form"><label class="field">Topic<select required><option value="">Choose a topic</option><option>Municipal services</option><option>Appointments</option><option>Community information</option><option>Other</option></select></label><label class="field">Subject<input type="text" maxlength="100" placeholder="What do you need help with?" required></label><label class="field">Message<textarea rows="5" maxlength="500" placeholder="Describe your concern" required></textarea></label><button class="primary-button">Submit demo request</button><p class="form-note" id="support-feedback" role="status" aria-live="polite">Demo only. Your request stays in this page session.</p></form>
+      </section>
+
+      <section class="screen" data-view="hotlines" aria-labelledby="hotlines-title" hidden>
+        <header class="emergency-banner compact-emergency"><button type="button" class="back-button" data-screen="emergency"><i class="ri-arrow-left-line"></i> Emergency</button><span class="eyebrow">LOCAL CONTACT DIRECTORY</span><h1 id="hotlines-title">Emergency Hotlines</h1><p>Sample directory for preview only. Call actions are disabled.</p></header>
+        <div class="national-hotlines"><article class="hotline-national red"><i class="ri-asterisk"></i><strong>911</strong><small>National Emergency</small></article><article class="hotline-national green"><i class="ri-first-aid-kit-line"></i><strong>1555</strong><small>DOH Hotline</small></article><article class="hotline-national blue"><i class="ri-water-flash-line"></i><strong>8976-1600</strong><small>NDRRMC</small></article></div>
+        <section class="section-block"><div class="section-heading"><div><h2>Local Emergency Contacts</h2><p>Municipality of Tabina · sample directory</p></div></div><div class="local-hotlines">
+          <article><i class="service-icon red ri-ship-line"></i><span><strong>Coast Guard</strong><small>Philippine Coast Guard</small><b>Demo contact · not connected</b></span><button type="button" data-hotline>Call</button></article>
+          <article><i class="service-icon red ri-shield-star-line"></i><span><strong>MPS</strong><small>Municipal Police Station</small><b>Demo contact · not connected</b></span><button type="button" data-hotline>Call</button></article>
+          <article><i class="service-icon red ri-alarm-warning-line"></i><span><strong>Municipal DRRMO</strong><small>Disaster Risk Reduction Office</small><b>Demo contact · not connected</b></span><button type="button" data-hotline>Call</button></article>
+          <article><i class="service-icon red ri-heart-pulse-line"></i><span><strong>Rural Health Unit</strong><small>Municipal Health Unit</small><b>Demo contact · not connected</b></span><button type="button" data-hotline>Call</button></article>
+          <article><i class="service-icon red ri-fire-line"></i><span><strong>Bureau of Fire Protection</strong><small>Local fire response</small><b>Demo contact · not connected</b></span><button type="button" data-hotline>Call</button></article>
+        </div></section>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Citizen app navigation">
+      <button type="button" class="active" data-screen="home" aria-current="page"><i class="ri-home-5-line"></i><span>Home</span></button>
+      <button type="button" data-screen="services"><i class="ri-grid-line"></i><span>Services</span></button>
+      <button type="button" class="emergency-nav" data-screen="emergency" aria-label="Emergency"><i class="ri-phone-fill"></i><span>Emergency</span></button>
+      <button type="button" data-screen="activity"><i class="ri-history-line"></i><span>Activity</span></button>
+      <button type="button" data-screen="profile"><i class="ri-user-3-line"></i><span>Profile</span></button>
+    </nav>
+
+    <dialog class="app-dialog" id="booking-dialog"><form id="booking-form"><button type="button" class="dialog-close" data-close aria-label="Close"><i class="ri-close-line"></i></button><span class="eyebrow">APPOINTMENTS</span><h2>Request an appointment</h2><p id="booking-service"></p><label class="field">Preferred date<input type="date" required></label><label class="field">Preferred time<select required><option value="">Choose a time</option><option>9:00 AM</option><option>10:30 AM</option><option>1:00 PM</option><option>2:30 PM</option></select></label><label class="field">Barangay<input type="text" placeholder="Your barangay" required></label><button class="primary-button">Save demo request</button><p class="form-note" id="booking-feedback">Sample only. This request will not be sent to the LGU.</p></form></dialog>
+    <dialog class="app-dialog" id="report-dialog"><form id="report-form"><button type="button" class="dialog-close" data-close aria-label="Close"><i class="ri-close-line"></i></button><span class="eyebrow">COMMUNITY REPORT</span><h2>Report an Issue</h2><p>Help improve Tabina by reporting concerns in your area.</p><label class="field">Issue Type<select id="report-issue-type" required><option value="">Select an issue type</option><option value="Emergency">Emergency</option><option value="Minor">Minor</option></select></label><label class="field" id="report-subtype-field" hidden><span id="report-subtype-label"></span><select id="report-subtype" required disabled></select></label><label class="field">Barangay<select required><option value="">Select barangay</option><option>Abong-abong</option><option>Baganian</option><option>Baya-baya</option><option>Capisan</option><option>Concepcion</option><option>Culabay</option><option>Doña Josefina</option><option>Lumbia</option><option>Mabuhay</option><option>Malim</option><option>Manicaan</option><option>New Oroquieta</option><option>Poblacion</option><option>San Francisco</option><option>Tultolan</option></select></label><label class="field">Description<textarea rows="4" maxlength="500" placeholder="Describe the issue" required></textarea></label><div class="attachment-field"><span class="attachment-title">Photos &amp; videos <span>(optional)</span></span><input class="attachment-input" type="file" id="report-attachments" accept="image/*,video/*" multiple aria-describedby="attachment-help attachment-feedback"><button class="attachment-add" type="button" id="add-report-attachments"><i class="ri-add-line" aria-hidden="true"></i> Add photos or videos</button><p class="attachment-help" id="attachment-help">Up to 5 photos and 3 videos. Each video can be up to 100 MB.</p><div class="attachment-list" id="attachment-list" aria-live="polite"></div><p class="attachment-feedback" id="attachment-feedback" role="status" aria-live="polite"></p></div><button class="primary-button">Submit demo report</button><p class="form-note" id="report-feedback">Demo only. This request and its attachments will not be sent to the LGU.</p></form></dialog>
+    <dialog class="app-dialog warning-dialog" id="report-warning-dialog" aria-labelledby="report-warning-title" aria-describedby="report-warning-copy">
+      <div class="warning-content">
+        <button type="button" class="dialog-close" data-warning-close aria-label="Close"><i class="ri-close-line"></i></button>
+        <span class="eyebrow">IMPORTANT LEGAL WARNING</span>
+        <h2 id="report-warning-title">⚠️ IMPORTANT LEGAL WARNING</h2>
+        <p class="warning-intro">Please read carefully before submitting your report.</p>
+        <div class="warning-copy" id="report-warning-copy">
+          <p>Knowingly filing a false report may be a criminal offense. Reports must be made in good faith and based on reasonable suspicion or credible information. Do not use this system to target people maliciously or settle personal disputes.</p>
+          <p>False reports about child abuse, neglect, or exploitation, or about an emergency, crime in progress, or immediate threat to public safety, may result in criminal penalties. Knowingly causing an unnecessary emergency response may also result in legal or financial consequences. Outcomes depend on the facts and applicable law.</p>
+          <h3>Before you continue</h3>
+          <p>This is a demo app. It does not submit reports to the LGU or log IP addresses or device identifiers. A live reporting service should explain its data practices in a privacy notice.</p>
+        </div>
+        <label class="warning-confirm">
+          <input type="checkbox" id="report-warning-confirm">
+          <span>I confirm that the information in this report is accurate to the best of my knowledge.</span>
+        </label>
+        <div class="warning-actions">
+          <button type="button" class="secondary-button" data-warning-close>Back to report</button>
+          <button type="button" class="primary-button" id="continue-report-submit" disabled>Continue to Submit</button>
+        </div>
+      </div>
+    </dialog>
+    <dialog class="app-dialog" id="profile-dialog"><form id="profile-form"><button type="button" class="dialog-close" data-close aria-label="Close"><i class="ri-close-line"></i></button><span class="eyebrow">ACCOUNT</span><h2>Edit profile</h2><label class="field">Full name<input name="name" value="BADER ALBIOS MALACO" maxlength="80" required></label><label class="field">Mobile number<input name="phone" value="+63 945 000 0101" maxlength="24" required></label><label class="field">Home location<input name="location" value="Saniblangis" maxlength="80" required></label><button class="primary-button">Save demo profile</button><p class="form-note" id="profile-feedback">Profile changes stay in this page session.</p></form></dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </div>
+  <script src="assets/js/app.js?v=mobile-v6"></script>
+</body>
+</html>
